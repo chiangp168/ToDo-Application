@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment9</a> &gt; <a href="index.source.html" class="el_package">todoapplication</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">package todoapplication;
+
+import java.util.HashMap;
+import todoapplication.model.FileErrorException;
+import todoapplication.model.IDNotFoundException;
+import todoapplication.model.Processor;
+import todoapplication.model.ToDo;
+import todoapplication.view.Display;
+import todoapplication.view.NothingToDisplayException;
+
+/**
+ * A class in charge of controlling the program, directing actions for the Model
+ * Singleton Pattern Design (uses &quot;eager&quot; allocation)
+ */
+public class Controller {
+<span class="nc" id="L16">  private static Controller controller = new Controller();</span>
+  private HashMap&lt;String, String&gt; commandLineData;
+  private Processor processor;
+  private static final String GIVEN = &quot;Given&quot;;
+
+  /**
+   * Constructs a new Controller
+   */
+  private Controller() { }
+
+  /**
+   * Eager Singleton instantiation
+   * @return the controller object instance
+   */
+  public static Controller getController() {
+<span class="nc" id="L31">    return controller;</span>
+  }
+
+  /**
+   * Set command line data which was passed in from the user
+   * @param commandLineData command line data as a HashMap of command line flags as keys
+   *                        and values of arguments passed in for the tags where applicable
+   */
+  private void setCommandLineData(HashMap&lt;String, String&gt; commandLineData) {
+<span class="nc" id="L40">    this.commandLineData = commandLineData;</span>
+<span class="nc" id="L41">  }</span>
+
+  /**
+   * Get instance of the Processor class to interact with the Model
+   */
+  private void setUpProcessor() {
+<span class="nc" id="L47">    this.processor = Processor.getProcessor();</span>
+<span class="nc" id="L48">  }</span>
+
+  /**
+   * Helper Method to update the completion status of ToDos if the complete flag is
+   * passed through as an argument
+   * @throws IDNotFoundException exception for id not found
+   */
+  private void update() throws IDNotFoundException {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">    if (this.commandLineData.get(&quot;--complete-todo&quot;) != null) {</span>
+<span class="nc" id="L57">      this.processor.updateCompletionStatusOfToDos(this.commandLineData.get(&quot;--complete-todo&quot;));</span>
+    }
+<span class="nc" id="L59">  }</span>
+
+  /**
+   * Helper method to coordinate sorting and filtering of the ToDos prior to display by the
+   * display method
+   */
+  private void coordinateDisplay() throws NothingToDisplayException {
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (this.commandLineData.get(&quot;--display&quot;).equals(GIVEN)) {</span>
+<span class="nc" id="L67">      this.processor.sortAndFilter(this.commandLineData.get(&quot;--show-incomplete&quot;),</span>
+<span class="nc" id="L68">                                   this.commandLineData.get(&quot;--show-category&quot;),</span>
+<span class="nc" id="L69">                                   this.commandLineData.get(&quot;--sort-by-date&quot;),</span>
+<span class="nc" id="L70">                                   this.commandLineData.get(&quot;--sort-by-priority&quot;));</span>
+<span class="nc" id="L71">      Display&lt;ToDo&gt; displayToDos = new Display&lt;&gt;(processor.getToDosToWorkWith());</span>
+<span class="nc" id="L72">      displayToDos.display();</span>
+    }
+<span class="nc" id="L74">  }</span>
+
+  /**
+   * Main run method of the Controller that passes relevant directives and
+   * coordinates the behavior of the Model
+   * @param commandLineData HashMap of the command line data; argument flags are keys and values
+   *                        are the necessary strings entered along with arguments
+   * @throws FileErrorException Exception thrown if the code encounters a CSV file without data
+   * @throws IDNotFoundException Exception for id not found
+   * @throws NothingToDisplayException Exception for nothing to display
+   */
+  public void run(HashMap&lt;String, String&gt; commandLineData)
+      throws IDNotFoundException, FileErrorException, NothingToDisplayException {
+<span class="nc" id="L87">    this.setCommandLineData(commandLineData);</span>
+<span class="nc" id="L88">    this.setUpProcessor();</span>
+    // Process the given CSV, add eachToDo to the CollectionOfToDos
+<span class="nc" id="L90">    this.processor.populateCollectionOfToDosWithCSV(commandLineData.get(&quot;--csv-file&quot;));</span>
+
+    // Use the HashMap of command line data to execute the specified tasks
+    // Do any additions
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    if (this.commandLineData.get(&quot;--add-todo&quot;) != null) {</span>
+<span class="nc" id="L95">      this.processor.addTodo(commandLineData.get(&quot;--todo-text&quot;),</span>
+<span class="nc" id="L96">          commandLineData.get(&quot;--completed&quot;),</span>
+<span class="nc" id="L97">          commandLineData.get(&quot;--due&quot;),</span>
+<span class="nc" id="L98">          commandLineData.get(&quot;--priority&quot;),</span>
+<span class="nc" id="L99">          commandLineData.get(&quot;--category&quot;));</span>
+    }
+    // Do any updates
+<span class="nc" id="L102">    this.update();</span>
+
+    // Check if display has been requested, coordinate all filtering and sorting needed to render
+    // display and display specified results.
+<span class="nc" id="L106">    this.coordinateDisplay();</span>
+<span class="nc" id="L107">  }</span>
+
+  public void run() {
+<span class="nc" id="L110">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CSVProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment9</a> &gt; <a href="index.source.html" class="el_package">todoapplication.model</a> &gt; <span class="el_source">CSVProcessor.java</span></div><h1>CSVProcessor.java</h1><pre class="source lang-java linenums">package todoapplication.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+/**
+ * The CSV file processor class. This class contains methods to parse the lines of a CSV file
+ * and extract he header information and information in each line.
+ * Follows Singleton design pattern (eager allocation)
+ */
+public class CSVProcessor {
+<span class="nc" id="L15">  public static CSVProcessor csvProcessor = new CSVProcessor();</span>
+  private List&lt;String&gt; csvLines;
+  private String header;
+  private HashMap&lt;String, String&gt; lineData;
+  private List&lt;String&gt; headerList;
+  private static final String INFO = &quot;\&quot;(.*?)\&quot;&quot;;
+  private static final String COMMA = &quot;,&quot;;
+
+  /**
+   * Constructs a new CSVProcessor object
+   * Header list and line data Items instantiated with the class
+   */
+<span class="nc" id="L27">  private CSVProcessor () {</span>
+<span class="nc" id="L28">    this.headerList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L29">    this.lineData = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L30"> }</span>
+
+  /**
+   * Instance method of the class
+   * @return the csvProcessor that has been created
+   */
+  public static CSVProcessor getCsvProcessor() {
+<span class="nc" id="L37">   return csvProcessor;</span>
+ }
+
+  /**
+   * Setter method for the csv lines
+   * @param csvLines lines containing the ToDos from the csv file
+   */
+  public void setCsvLines(List&lt;String&gt; csvLines) {
+<span class="nc" id="L45">    this.csvLines = csvLines;</span>
+<span class="nc" id="L46">  }</span>
+
+  /**
+   * Method to parse CSV lines to form List of ToDos
+   * @return a List of ToDos parsed from lines in the csv read as list of strings
+   * @throws FileErrorException Exception thrown if the code encounters a CSV file without data
+   */
+  public List&lt;ToDo&gt; parseFile() throws FileErrorException {
+    // Check CSV lines have been read in
+<span class="nc" id="L55">    List&lt;ToDo&gt; toDosFromFile = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">    if (this.csvLines == null) {</span>
+<span class="nc" id="L57">      throw new FileErrorException(&quot;Invalid file&quot;);</span>
+    }
+<span class="nc" id="L59">    this.parseHeader(this.csvLines.get(0));</span>
+    // Parse each row of data
+<span class="nc bnc" id="L61" title="All 2 branches missed.">    for (int i = 1; i &lt; this.csvLines.size(); i++) {</span>
+<span class="nc" id="L62">      ToDo toDoToAdd = this.parseLine(this.csvLines.get(i));</span>
+<span class="nc" id="L63">      toDosFromFile.add(toDoToAdd);</span>
+    }
+<span class="nc" id="L65">    return toDosFromFile;</span>
+  }
+
+  /**
+   * Helper method parses a line of the CSV file and calls the string to ToDo parser helper method
+   * @param line - the line from a CSV file to parse
+   */
+  private ToDo parseLine(String line) {
+      // Creates a ToDo as the key and corresponding ToDo field value as the value.
+<span class="nc" id="L74">    Pattern pattern = Pattern.compile(INFO);</span>
+<span class="nc" id="L75">    Matcher matcher = pattern.matcher(line);</span>
+<span class="nc" id="L76">    int i = 0;</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">    while(matcher.find()) {</span>
+<span class="nc" id="L78">      this.headerList.add(matcher.group(1));</span>
+<span class="nc" id="L79">      this.lineData.put(this.headerList.get(i), matcher.group(1));</span>
+<span class="nc" id="L80">      i++;</span>
+    }
+<span class="nc" id="L82">   return this.createToDoFromLine(this.lineData);</span>
+  }
+
+  /**
+   * Helper method reads the fields of header of the csv input file, and then sets them as the
+   * keys of a hashMap
+   * @param firstLine -the first line (header) of the file to parse
+   */
+  private void parseHeader(String firstLine) {
+<span class="nc" id="L91">    this.header = firstLine;</span>
+<span class="nc" id="L92">      Pattern pattern = Pattern.compile(INFO);</span>
+<span class="nc" id="L93">      Matcher matcher = pattern.matcher(firstLine);</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">      while(matcher.find()) {</span>
+<span class="nc" id="L95">        this.headerList.add(matcher.group(1));</span>
+<span class="nc" id="L96">        this.lineData.put(matcher.group(1), &quot;null&quot;);</span>
+      }
+<span class="nc" id="L98">    }</span>
+
+  /**
+   * Helper method to create a to do object from the elements of the HashMap created
+   * from reading the lines of the CSV file
+   * @param lineInfo - A hash map containing information from a line of the CSV file.
+   *
+   * @return the ToDo object created from the line
+   */
+  private ToDo createToDoFromLine(HashMap&lt;String, String&gt; lineInfo){
+<span class="nc" id="L108">     return ToDoCreator.getToDoCreator().createToDoFromLine(lineInfo);</span>
+   }
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

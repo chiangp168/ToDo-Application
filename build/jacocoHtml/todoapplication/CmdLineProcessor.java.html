@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CmdLineProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment9</a> &gt; <a href="index.source.html" class="el_package">todoapplication</a> &gt; <span class="el_source">CmdLineProcessor.java</span></div><h1>CmdLineProcessor.java</h1><pre class="source lang-java linenums">package todoapplication;
+import java.util.HashMap;
+import java.util.Objects;
+
+/**
+ * This class takes in the user input command line, and build a hash map to store the values.
+ */
+public class CmdLineProcessor {
+
+<span class="nc" id="L10">  protected HashMap&lt;String, String&gt; commandLineData = new HashMap&lt;String, String&gt;();</span>
+  private static final String ADDNEWTODO = &quot;--add-todo&quot;;
+  private static final String DISPLAY = &quot;--display&quot;;
+  private static final String COMPLETED = &quot;--completed&quot;;
+  private static final String CSVFILE = &quot;--csv-file&quot;;
+  private static final String TODOTEXT = &quot;--todo-text&quot;;
+  private static final String DUE = &quot;--due&quot;;
+  private static final String PRIORITY = &quot;--priority&quot;;
+  private static final String CATEGORY = &quot;--category&quot;;
+  private static final String COMPLETETODO = &quot;--complete-todo&quot;;
+  private static final String SHOWINCOMPLETE = &quot;--show-incomplete&quot;;
+  private static final String SHOWCATEGORY = &quot;--show-category&quot;;
+  private static final String SORTDATE = &quot;--sort-by-date&quot;;
+  private static final String SORTPRIORITY = &quot;--sort-by-priority&quot;;
+  private static final String GIVEN = &quot;Given&quot;;
+  private static final String SPACE = &quot; &quot;;
+  protected static final int MIN_NUMBER_ARGS = 2;
+  //protected static final int MAX_NUMBER_ARGS = 17;
+
+  /**
+   * Constructs a new CmdLineProcessor object.
+   */
+<span class="nc" id="L32">  public CmdLineProcessor() {</span>
+<span class="nc" id="L33">    this.commandLineData = createHashMapKeys();</span>
+<span class="nc" id="L34">  }</span>
+
+  /**
+   * Set up the possible command line argument flags as keys.
+   * @return HashMap - with all possible keys with value of null.
+   */
+  private HashMap&lt;String, String&gt; createHashMapKeys() {
+<span class="nc" id="L41">    commandLineData.put(CSVFILE, null);</span>
+<span class="nc" id="L42">    commandLineData.put(ADDNEWTODO, null);</span>
+<span class="nc" id="L43">    commandLineData.put(TODOTEXT, null);</span>
+<span class="nc" id="L44">    commandLineData.put(COMPLETED, null);</span>
+<span class="nc" id="L45">    commandLineData.put(DUE, null);</span>
+<span class="nc" id="L46">    commandLineData.put(PRIORITY, null);</span>
+<span class="nc" id="L47">    commandLineData.put(CATEGORY, null);</span>
+<span class="nc" id="L48">    commandLineData.put(COMPLETETODO, null);</span>
+<span class="nc" id="L49">    commandLineData.put(DISPLAY, null);</span>
+<span class="nc" id="L50">    commandLineData.put(SHOWINCOMPLETE, null);</span>
+<span class="nc" id="L51">    commandLineData.put(SHOWCATEGORY, null);</span>
+<span class="nc" id="L52">    commandLineData.put(SORTDATE, null);</span>
+<span class="nc" id="L53">    commandLineData.put(SORTPRIORITY, null);</span>
+<span class="nc" id="L54">    return commandLineData;</span>
+  }
+
+  /**
+   * Process the user input command line arguments and save them as values in the hash map.
+   * @param args - an array of command line arguments
+   * @return HashMap - a hash map with user input keys
+   * @throws CommandLineException - when an invalid command line argument is given
+   */
+  public HashMap&lt;String, String&gt; processArguments(String[] args) throws CommandLineException {
+<span class="nc" id="L64">    int next = 1;</span>
+<span class="nc" id="L65">    checkInputLength(args);</span>
+<span class="nc" id="L66">    int index = 0;</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    while (index &lt; args.length) {</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      if (commandLineData.containsKey(args[index])) {</span>
+<span class="nc bnc" id="L69" title="All 3 branches missed.">        switch (args[index]) {</span>
+          case DISPLAY:
+          case COMPLETED:
+          case SHOWINCOMPLETE:
+          case SORTDATE:
+          case SORTPRIORITY:
+          case ADDNEWTODO:
+<span class="nc" id="L76">            commandLineData.replace(args[index], GIVEN);</span>
+<span class="nc" id="L77">            break;</span>
+          case COMPLETETODO:
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (index + next &lt; args.length) {</span>
+<span class="nc" id="L80">              String oldValue = commandLineData.get(COMPLETETODO);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">              if (oldValue != null) {</span>
+<span class="nc" id="L82">                commandLineData.replace(args[index], oldValue + SPACE + args[index + next]);</span>
+              } else {
+<span class="nc" id="L84">                  commandLineData.replace(args[index], args[index + next]);</span>
+                }
+<span class="nc" id="L86">            } else {</span>
+<span class="nc" id="L87">              throw new CommandLineException(&quot;Invalid argument1&quot;);</span>
+            }
+<span class="nc" id="L89">            index++;</span>
+<span class="nc" id="L90">            break;</span>
+          default:
+<span class="nc bnc" id="L92" title="All 2 branches missed.">              if (index + next &lt; args.length) {</span>
+<span class="nc" id="L93">                commandLineData.replace(args[index], args[index + next]);</span>
+              } else {
+<span class="nc" id="L95">                throw new CommandLineException(&quot;Invalid argument2&quot;);</span>
+              }
+<span class="nc" id="L97">            index++;</span>
+<span class="nc" id="L98">            break;</span>
+        }
+      } else {
+<span class="nc" id="L101">        throw new CommandLineException(&quot;Invalid argument3&quot;);</span>
+      }
+<span class="nc" id="L103">      index++;</span>
+    }
+<span class="nc bnc" id="L105" title="All 2 branches missed.">    if (this.legalCombination()) {</span>
+<span class="nc" id="L106">      return this.commandLineData;</span>
+    } else {
+<span class="nc" id="L108">      throw new CommandLineException(&quot;Invalid argument4&quot;);</span>
+    }
+  }
+
+  /**
+   * Check the length of argument.
+   * @param args - an array of command line arguments
+   * @throws CommandLineException - when an invalid command line argument is given
+   */
+  private void checkInputLength(String[] args) throws CommandLineException {
+<span class="nc bnc" id="L118" title="All 2 branches missed.">    if (args.length &lt; MIN_NUMBER_ARGS) {</span>
+<span class="nc" id="L119">      throw new CommandLineException(&quot;Incorrect number of arguments!&quot;);</span>
+    }
+<span class="nc" id="L121">  }</span>
+
+  /**
+   * Check legal combination of arguments.
+   * @return boolean - return true when combination of arguments is valid, or return false
+   * otherwise.
+   */
+  private boolean legalCombination() {
+<span class="nc bnc" id="L129" title="All 6 branches missed.">    return this.checkCSVFile() &amp;&amp; this.checkSort() &amp;&amp; this.checkAddToDo();</span>
+  }
+
+  /**
+   * Check if the CSV file to read from is provided.
+   * @return boolean - true when provided, false otherwise.
+   */
+  private boolean checkCSVFile() {
+<span class="nc bnc" id="L137" title="All 2 branches missed.">    return commandLineData.get(CSVFILE) != null;</span>
+  }
+
+  /**
+   * Check if only one sort is given.
+   * @return boolean - true when only one sort is given, false otherwise.
+   */
+  private boolean checkSort() {
+<span class="nc bnc" id="L145" title="All 4 branches missed.">    return commandLineData.get(SORTDATE) == null || commandLineData.get(SORTPRIORITY) == null;</span>
+  }
+
+  /**
+   * Check if the description of a Todo is given when adding a new Todo.
+   * @return boolean - true when the description is given, false otherwise.
+   */
+  private boolean checkAddToDo() {
+<span class="nc bnc" id="L153" title="All 2 branches missed.">    if (commandLineData.get(ADDNEWTODO) != null) {</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">      return commandLineData.get(TODOTEXT) != null;</span>
+    }
+<span class="nc" id="L156">    return true;</span>
+  }
+
+  /**
+   * Getter for the hash map.
+   * @return HashMap - commandLineData
+   */
+  public HashMap&lt;String, String&gt; getCommandLineData() {
+<span class="nc" id="L164">    return commandLineData;</span>
+  }
+
+  /**
+   * Determines if the given object equals the CmdLineProcessor object
+   * @param o - the given object
+   * @return true if the given object is equal to the CmdLineProcessor object, false otherwise
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L174" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L175">      return true;</span>
+    }
+<span class="nc bnc" id="L177" title="All 4 branches missed.">    if (o == null || o.getClass() != this.getClass()) {</span>
+<span class="nc" id="L178">      return false;</span>
+    }
+<span class="nc" id="L180">    CmdLineProcessor that = (CmdLineProcessor) o;</span>
+<span class="nc" id="L181">    return Objects.equals(getCommandLineData(), that.getCommandLineData());</span>
+  }
+
+  /**
+   * Returns the hash code of the CmdLineProcessor object
+   * @return the hash code of the CmdLineProcessor object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L190">    return Objects.hash(getCommandLineData());</span>
+  }
+
+  /**
+   * Returns a string representation of the CmdLineProcessor object
+   * @return a string representation of the CmdLineProcessor object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L199">    return &quot;CmdLineProcessor{&quot; +</span>
+        &quot;commandLineData=&quot; + commandLineData +
+        '}';
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

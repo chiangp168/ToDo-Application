@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DateSorter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment9</a> &gt; <a href="index.source.html" class="el_package">todoapplication.model</a> &gt; <span class="el_source">DateSorter.java</span></div><h1>DateSorter.java</h1><pre class="source lang-java linenums">package todoapplication.model;
+import java.util.Comparator;
+import java.util.List;
+
+/**
+ * A class that implements functionality to sort a collection of ToDos. This class utilizes
+ * the singleton pattern (eager instantiation)
+ */
+public class DateSorter implements Comparator&lt;ToDo&gt; {
+  private static DateSorter dateSorter;
+
+  /**
+   * Private constructor to instantiate the Sort by Date object
+   */
+  private DateSorter() {};
+
+  /**
+   * Returns the DateSorter sort by date object
+   * @return the DateSorter sort by date object
+   */
+  public static DateSorter getDateSorter() {
+<span class="nc bnc" id="L22" title="All 2 branches missed.">    if (dateSorter == null) {</span>
+<span class="nc" id="L23">      dateSorter = new DateSorter();</span>
+    }
+<span class="nc" id="L25">    return dateSorter;</span>
+  }
+
+  /**
+   * Compare method override for comparing on date
+   * @param toDo1 first object to be compared
+   * @param toDo2 second object to be compared
+   * @return a negative integer, zero, or a positive integer as the first argument has priority
+   * less than, equal to, or greater than the priority of the second.
+   */
+  @Override
+  public int compare(ToDo toDo1, ToDo toDo2) {
+<span class="nc bnc" id="L37" title="All 2 branches missed.">    if(toDo2.getDueDate().isBefore(toDo1.getDueDate()) == true) {</span>
+<span class="nc" id="L38">      return 1;</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">    } else if (toDo2.getDueDate().isAfter(toDo1.getDueDate()) == true) {</span>
+<span class="nc" id="L40">      return -1;</span>
+    } else {
+<span class="nc" id="L42">      return 0;</span>
+    }
+  }
+
+  /**
+   * Given a list of ToDos, sorts the list by date
+   * @param toDos - the list of ToDos to sort by due date
+   * @return the sorted list of ToDos
+   */
+  public List&lt;ToDo&gt; sortByDate(List&lt;ToDo&gt; toDos) {
+<span class="nc" id="L52">    toDos.sort(DateSorter.getDateSorter());</span>
+<span class="nc" id="L53">    return toDos;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L58">    return &quot;SortByDate&quot;;</span>
+  }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

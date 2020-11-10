@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ToDoCreator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment9</a> &gt; <a href="index.source.html" class="el_package">todoapplication.model</a> &gt; <span class="el_source">ToDoCreator.java</span></div><h1>ToDoCreator.java</h1><pre class="source lang-java linenums">package todoapplication.model;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+
+/**
+ * A ToDo Creator class that has two methods, one to create a ToDo from a line in a CSV file
+ * and another method to create a new ToDo with the specified fields.
+ */
+public class ToDoCreator {
+<span class="nc" id="L11">  private static ToDoCreator toDoCreator = new ToDoCreator();</span>
+  private static final String NO_INFO_PROVIDED_CSV = &quot;?&quot;;
+  private static final String FALSE = &quot;false&quot;;
+  private static final String NONE = &quot;None&quot;;
+  private static final String SLASH = &quot;/&quot;;
+  private static final int NOT_PROVIDED = 3;
+
+  /**
+   * Constructs a new ToDoCreator class
+   */
+  private ToDoCreator() {
+  }
+
+  /**
+   * Returns the ToDoCreator class instance
+   * @return the ToDoCreator class instance
+   */
+  public static ToDoCreator getToDoCreator() {
+<span class="nc" id="L29">    return toDoCreator;</span>
+  }
+
+  /**
+   * Creates a ToDo object from the given hash map of line data
+   * @param line - the hash map containing the data
+   * @return the ToDo object corresponding to the given data
+   */
+  public ToDo createToDoFromLine(HashMap&lt;String, String&gt; line) {
+<span class="nc" id="L38">    return new ToDo.ToDoBuilder().id(this.setID(line.get(&quot;id&quot;)))</span>
+<span class="nc" id="L39">                                 .text(line.get(&quot;text&quot;))</span>
+<span class="nc" id="L40">                                 .completed(this.determineCompletionStatus(line.get(&quot;completed&quot;)))</span>
+<span class="nc" id="L41">                                 .dueDate(this.setDueDate(line.get(&quot;due&quot;)))</span>
+<span class="nc" id="L42">                                 .priority(this.setPriority(line.get(&quot;priority&quot;)))</span>
+<span class="nc" id="L43">                                 .category(this.setCategory(line.get(&quot;category&quot;)))</span>
+<span class="nc" id="L44">                                 .build();</span>
+  }
+
+  /**
+   * Parses the String ID given and sets the ID of the ToDo
+   * @param id - the ID data given (as a String)
+   * @return the ID of the ToDo
+   */
+  private Integer setID(String id) {
+<span class="nc" id="L53">    return Integer.parseInt(id);</span>
+  }
+
+  /**
+   * Determines the completion status of the ToDo with the given data, if the completion
+   * status is not given, sets the completion status to false.
+   * @param completionStatus - the completion status information given
+   * @return the completion status of the ToDo
+   */
+  private boolean determineCompletionStatus(String completionStatus) {
+<span class="nc bnc" id="L63" title="All 6 branches missed.">    if (completionStatus == null || completionStatus.equals(NO_INFO_PROVIDED_CSV) || completionStatus.equals(FALSE)) {</span>
+<span class="nc" id="L64">      return false;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">    } else if (completionStatus.equals(NO_INFO_PROVIDED_CSV)) {</span>
+<span class="nc" id="L66">        return false;</span>
+    } else {
+<span class="nc" id="L68">      return true;</span>
+    }
+  }
+
+  /**
+   * Sets the category of the ToDo, if the category information is not given, sets the category
+   * to the default.
+   * @param category - the category information
+   * @return the category of the ToDo
+   */
+  private String setCategory(String category) {
+<span class="nc bnc" id="L79" title="All 4 branches missed.">    if (category == null || category.equals(NO_INFO_PROVIDED_CSV)) {</span>
+<span class="nc" id="L80">      return NONE;</span>
+    } else {
+<span class="nc" id="L82">      return category;</span>
+    }
+  }
+
+  /**
+   * Sets the priority of the ToDo, if the priority information is not given, set the priority to
+   * the default
+   * @param priority - the priority information
+   * @return the priority of the ToDo
+   */
+  private int setPriority(String priority) {
+<span class="nc bnc" id="L93" title="All 4 branches missed.">    if (priority == null || priority.equals(NO_INFO_PROVIDED_CSV)) {</span>
+<span class="nc" id="L94">      return NOT_PROVIDED;</span>
+    } else {
+<span class="nc" id="L96">      return Integer.parseInt(priority);</span>
+    }
+  }
+
+  /**
+   * Sets the due date of the ToDo, if the due date is not given, sets the due date to the
+   * default. Assumes date is given in the format: &quot;mm/dd/yyyy&quot;
+   * @param due - the due date information
+   * @return the due date of the ToDo
+   */
+  private LocalDate setDueDate(String due) {
+<span class="nc bnc" id="L107" title="All 4 branches missed.">    if (due == null || due.equals(NO_INFO_PROVIDED_CSV)) {</span>
+      // If no date is provided set due date to max date
+<span class="nc" id="L109">      return LocalDate.MAX;</span>
+    } else {
+<span class="nc" id="L111">      String[] dateInfo = due.split(SLASH);</span>
+<span class="nc" id="L112">      return LocalDate.of(Integer.parseInt(dateInfo[2]),</span>
+<span class="nc" id="L113">                          Integer.parseInt(dateInfo[0]),</span>
+<span class="nc" id="L114">                          Integer.parseInt(dateInfo[1]));</span>
+    }
+  }
+
+  /**
+   * Creates a new ToDo with the specified text, completion status, due date, priority, and
+   * category. Assigns the new ToDo object an ID. Sets missing values to defaults.
+   * @param text - the text description of the ToDo
+   * @param completed - the completion status of the ToDo
+   * @param due - the due date of the ToDo
+   * @param priority - the priority of the ToDo
+   * @param category - the category of the ToDo
+   * @return a ToDo object with the specified fields
+   */
+  public ToDo createNewToDo(String text, String completed, String due,
+                            String priority, String category) {
+<span class="nc" id="L130">    Integer idCountCurrent = (CollectionOfToDos.getCollectionOfToDos().getNumberOfToDos());</span>
+    // Find a new ID to assign the ToDo using the number of ToDos as a starting point
+<span class="nc" id="L132">    idCountCurrent++;</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">    while (this.idTaken(idCountCurrent)) {</span>
+<span class="nc" id="L134">      idCountCurrent++;</span>
+    }
+<span class="nc" id="L136">    return new ToDo.ToDoBuilder().id(idCountCurrent)</span>
+<span class="nc" id="L137">                                 .text(text)</span>
+<span class="nc" id="L138">                                 .completed(this.determineCompletionStatus(completed))</span>
+<span class="nc" id="L139">                                 .dueDate(this.setDueDate(due))</span>
+<span class="nc" id="L140">                                 .priority(this.setPriority(priority))</span>
+<span class="nc" id="L141">                                 .category(this.setCategory(category))</span>
+<span class="nc" id="L142">                                 .build();</span>
+  }
+
+  /**
+   * Determines if an ID is already assigned to a ToDo in the collection
+   * @param id - the ID to check
+   * @return true if a ToDo in the collection has the same ID, false otherwise
+   */
+  private boolean idTaken(Integer id) {
+<span class="nc bnc" id="L151" title="All 2 branches missed.">    for (int i = 0; i &lt; CollectionOfToDos.getCollectionOfToDos().getNumberOfToDos(); i++) {</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">      if (CollectionOfToDos.getCollectionOfToDos().getToDos().get(i).getID().equals(id)) {</span>
+<span class="nc" id="L153">        return true;</span>
+      }
+    }
+<span class="nc" id="L156">    return false;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

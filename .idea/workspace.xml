@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c6e770c5-7c8e-4307-9fc6-718acd7f8530" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Assignment8/src/main/java/problem01/OutputDirectoryPopulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment8/src/main/java/problem01/OutputDirectoryPopulator.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Assignment9" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Assignment9" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Assignment9" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Assignment9" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Assignment9" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1a6c9FII8mTbxrMEyZj0z9kdRG7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="todoapplication" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="todoapplication.Main" />
+      <module name="Assignment9.main" />
+      <option name="PROGRAM_PARAMETERS" value="--csv-file &quot;$USER_HOME$/Desktop/test_csv.txt&quot; --display --add-todo --todo-text &quot;Finish C HW&quot; --priority 3 --sort-by-priority" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assignment9 [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="check" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Assignment9 [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="javadoc" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CategoryFilterTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;todoapplication.model.CategoryFilterTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;todoapplication.ControllerTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProcessorTest.sortAndFilterFilterByCategorySortByPriority" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;todoapplication.model.ProcessorTest.sortAndFilterFilterByCategorySortByPriority&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.Assignment9 [check]" />
+      <item itemvalue="Gradle.ControllerTest" />
+      <item itemvalue="Gradle.Assignment9 [javadoc]" />
+      <item itemvalue="Gradle.ProcessorTest.sortAndFilterFilterByCategorySortByPriority" />
+      <item itemvalue="Gradle.CategoryFilterTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.CategoryFilterTest" />
+        <item itemvalue="Gradle.Assignment9 [check]" />
+        <item itemvalue="Gradle.ProcessorTest.sortAndFilterFilterByCategorySortByPriority" />
+        <item itemvalue="Gradle.Assignment9 [javadoc]" />
+        <item itemvalue="Gradle.ControllerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c6e770c5-7c8e-4307-9fc6-718acd7f8530" name="Default Changelist" comment="" />
+      <created>1586059330825</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586059330825</updated>
+      <workItem from="1586059332551" duration="255000" />
+      <workItem from="1586059617361" duration="4673000" />
+      <workItem from="1586120678521" duration="10435000" />
+      <workItem from="1586151604912" duration="975000" />
+      <workItem from="1586187219380" duration="23033000" />
+      <workItem from="1586310276658" duration="805000" />
+      <workItem from="1586358740884" duration="3221000" />
+      <workItem from="1586878987265" duration="213000" />
+      <workItem from="1587101782682" duration="1071000" />
+      <workItem from="1587236731171" duration="68000" />
+      <workItem from="1602884406952" duration="1052000" />
+      <workItem from="1604257962387" duration="895000" />
+      <workItem from="1604431080185" duration="360000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="404" y="115" key="#Main" timestamp="1586126610194">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="404" y="115" key="#Main/0.0.1440.900@0.0.1440.900" timestamp="1586126610194" />
+    <state x="458" y="223" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586059978158">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="223" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1586059978158" />
+    <state x="140" y="116" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586371193164">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="140" y="116" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1586371193164" />
+    <state x="100" y="100" width="1240" height="700" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1586212042960">
+      <screen x="0" y="22" width="1440" height="878" />
+    </state>
+    <state x="100" y="100" width="1240" height="700" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1440.900@0.0.1440.900" timestamp="1586211973130" />
+    <state x="100" y="100" width="1240" height="700" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.22.1440.878@0.22.1440.878" timestamp="1586212042960" />
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser" timestamp="1586192297560">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1586192297560" />
+    <state x="457" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586137465321">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="457" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1586137465321" />
+    <state width="1398" height="347" key="GridCell.Tab.0.bottom" timestamp="1586410475279">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="347" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586410475279" />
+    <state width="1398" height="347" key="GridCell.Tab.0.center" timestamp="1586410475277">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="347" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1586410475277" />
+    <state width="1398" height="347" key="GridCell.Tab.0.left" timestamp="1586410475275">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="347" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1586410475275" />
+    <state width="1398" height="347" key="GridCell.Tab.0.right" timestamp="1586410475278">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="347" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1586410475278" />
+    <state width="1398" height="351" key="GridCell.Tab.1.bottom" timestamp="1586290289723">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="351" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586290289723" />
+    <state width="1398" height="351" key="GridCell.Tab.1.center" timestamp="1586290289722">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="351" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1586290289722" />
+    <state width="1398" height="351" key="GridCell.Tab.1.left" timestamp="1586290289721">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="351" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1586290289721" />
+    <state width="1398" height="351" key="GridCell.Tab.1.right" timestamp="1586290289723">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="351" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1586290289723" />
+    <state x="499" y="184" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1586192339649">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="499" y="184" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1440.900@0.0.1440.900" timestamp="1586192339649" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1586197831314">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/0.0.1440.900@0.0.1440.900" timestamp="1586197831314" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/todoapplication/CmdLineProcessor.java</url>
+          <line>62</line>
+          <properties class="todoapplication.CmdLineProcessor" method="processArguments">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

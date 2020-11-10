@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ToDo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment9</a> &gt; <a href="index.source.html" class="el_package">todoapplication.model</a> &gt; <span class="el_source">ToDo.java</span></div><h1>ToDo.java</h1><pre class="source lang-java linenums">package todoapplication.model;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+/**
+ * A class representing a Todo. A Todo has text, a description of the task to be done and completed,
+ * indicating if the Todo was completed. A Todo also has optional information detailing the ToDo's
+ * due date, priority, and category.
+ */
+public class ToDo {
+  private final String text;
+  private boolean completed;
+  private final LocalDate dueDate;
+  private final int priority;
+  private final String category;
+  private final Integer id;
+
+  /**
+   * Creates a new ToDo object with the given ToDo Builder
+   * @param builder - the ToDo builder
+   */
+<span class="fc" id="L23">  private ToDo (ToDoBuilder builder) {</span>
+<span class="fc" id="L24">    this.text = builder.text;</span>
+<span class="fc" id="L25">    this.completed = builder.completed;</span>
+<span class="fc" id="L26">    this.dueDate = builder.dueDate;</span>
+<span class="fc" id="L27">    this.priority = builder.priority;</span>
+<span class="fc" id="L28">    this.category = builder.category;</span>
+<span class="fc" id="L29">    this.id = builder.id;</span>
+<span class="fc" id="L30">  }</span>
+
+  public void markCompleted() {
+<span class="nc" id="L33">    this.completed = true;</span>
+<span class="nc" id="L34">  }</span>
+
+  /**
+   * Returns the text description for the ToDo
+   * @return the text description for the ToDo
+   */
+  public String getText() {
+<span class="fc" id="L41">    return this.text;</span>
+  }
+
+  /**
+   * Returns the completion status of the ToDo
+   * @return the completion status
+   */
+  public boolean isCompleted() {
+<span class="fc" id="L49">    return this.completed;</span>
+  }
+
+  /**
+   * Returns the ToDo's due date
+   * @return the due date
+   */
+  public LocalDate getDueDate() {
+<span class="nc" id="L57">    return this.dueDate;</span>
+  }
+
+  /**
+   * Returns the priority of the ToDo (1 is highest and 3 is lowest)
+   * @return the priority of the ToDo (1 is highest and 3 is lowest)
+   */
+  public int getPriority() {
+<span class="nc" id="L65">    return this.priority;</span>
+  }
+
+  /**
+   * Returns the ID of the ToDo
+   * @return the ID of the ToDo
+   */
+  public Integer getID() {
+<span class="nc" id="L73">    return this.id;</span>
+  }
+
+  /**
+   * Returns the category of the ToDo
+   * @return the category
+   */
+  public String getCategory() {
+<span class="fc" id="L81">    return this.category;</span>
+  }
+
+  /**
+   * A static class representing a Builder to construct ToDo objects
+   */
+<span class="fc" id="L87">  public static class ToDoBuilder {</span>
+    private String text;
+    private boolean completed;
+    private LocalDate dueDate;
+    private int priority;
+    private String category;
+    private Integer id;
+
+    /**
+     * Sets the ID of the ToDo Builder
+     * @param id - the ID for the ToDo
+     * @return a new ToDoBuilder object with the given ID
+     */
+    public ToDoBuilder id(final Integer id) {
+<span class="fc" id="L101">      this.id = id;</span>
+<span class="fc" id="L102">      return this;</span>
+    }
+
+    /**
+     * Sets the text description of the ToDo Builder
+     * @param text - the text description for the ToDo
+     * @return a new ToDoBuilder object with the given text description
+     */
+    public ToDoBuilder text(final String text) {
+<span class="fc" id="L111">      this.text = text;</span>
+<span class="fc" id="L112">      return this;</span>
+    }
+
+    /**
+     * Sets the completion status of the ToDo Builder
+     * @param completed - the completion status of the ToDo
+     * @return a new ToDoBuilder object with the given completion status
+     */
+    public ToDoBuilder completed(boolean completed) {
+<span class="fc" id="L121">      this.completed = completed;</span>
+<span class="fc" id="L122">      return this;</span>
+    }
+
+    /**
+     * Sets the due date of the ToDo Builder
+     * @param dueDate - the ToDo's due date
+     * @return a new ToDoBuilder object with the given due date
+     */
+    public ToDoBuilder dueDate(LocalDate dueDate) {
+<span class="fc" id="L131">      this.dueDate = dueDate;</span>
+<span class="fc" id="L132">      return this;</span>
+    }
+
+    /**
+     * Sets the priority of the ToDo Builder
+     * @param priority - the ToDo's priority
+     * @return a new ToDoBuilder object with the given priority
+     */
+    public ToDoBuilder priority(final int priority) {
+<span class="fc" id="L141">      this.priority = priority;</span>
+<span class="fc" id="L142">      return this;</span>
+    }
+
+    /**
+     * Sets the category of the ToDo Builder
+     * @param category - the ToDo's category
+     * @return a new ToDoBuilder object with the given category
+     */
+    public ToDoBuilder category(final String category) {
+<span class="fc" id="L151">      this.category = category;</span>
+<span class="fc" id="L152">      return this;</span>
+    }
+
+    /**
+     * Builds a new ToDo object
+     * @return a new ToDo object
+     */
+    public ToDo build() {
+<span class="fc" id="L160">      return new ToDo(this);</span>
+    }
+
+  }
+
+  /**
+   * Determines if a ToDo is equal to the given object
+   * @param o - the given object to compare the ToDo object with
+   * @return true if the ToDo object is equal to the given object, false otherwise.
+   */
+  @Override
+  public boolean equals(Object o) {
+<span class="fc bfc" id="L172" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L173">      return true;</span>
+    }
+<span class="pc bpc" id="L175" title="2 of 4 branches missed.">    if (o == null || o.getClass() != this.getClass()) {</span>
+<span class="nc" id="L176">      return false;</span>
+    }
+<span class="fc" id="L178">    ToDo that = (ToDo) o;</span>
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">    return isCompleted() == that.isCompleted() &amp;&amp;</span>
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">        this.getText().equals(that.getText()) &amp;&amp;</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        this.getID().equals(that.getID()) &amp;&amp;</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">        Objects.equals(this.getCategory(), that.getCategory()) &amp;&amp;</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        Objects.equals(this.getDueDate(), that.getDueDate()) &amp;&amp;</span>
+<span class="pc bnc" id="L184" title="All 2 branches missed.">        Objects.equals(this.getPriority(), that.getPriority());</span>
+  }
+
+  /**
+   * Returns the hash code of a ToDo object
+   * @return the hash code of a ToDo object
+   */
+  @Override
+  public int hashCode() {
+<span class="nc" id="L193">    return Objects.hash(getText(), isCompleted(), getDueDate(), getPriority(), getCategory(),</span>
+<span class="nc" id="L194">        getID());</span>
+  }
+
+  /**
+   * Returns a string representation of a ToDo object
+   * @return a string representation of a ToDo object
+   */
+  @Override
+  public String toString() {
+<span class="nc" id="L203">    return &quot;ToDo ID: &quot; + this.id +</span>
+        &quot; Text: &quot; + this.text +
+        &quot; Completed: &quot; + this.completed +
+<span class="nc" id="L206">        &quot; Due Date: &quot; + this.dueDate.toString() +</span>
+        &quot; Priority: &quot; + this.priority +
+        &quot; Category: &quot; + this.category;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
