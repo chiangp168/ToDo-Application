@@ -1,0 +1,10 @@
+*.*
+gradlew
+!.gitignore
+!*.md
+!*.java
+!*.txt
+!*.json
+!*.png
+!*.ump
+!testDirectory
