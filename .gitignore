@@ -8,3 +8,4 @@ gradlew
 !*.png
 !*.ump
 !testDirectory
+.DS_Store
